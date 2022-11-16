@@ -18,7 +18,9 @@ sure to solve all conflicts before requesting approval.
 
 ## Ideas
 
-OS scheduler based on game theoretic approach; scarse resource could be either 
+### Idea 1
+
+OS scheduler based on game theoretic approach; scarce resource could be either 
 CPU or memory:
 
 - static:
@@ -29,3 +31,8 @@ CPU or memory:
 - dynamic:
 
 	- 
+
+### Idea 2
+
+Programming Language runtime resources handling for garbage collected languages 
+(e.g. java, go, JavaScript)
