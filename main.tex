@@ -1,0 +1,23 @@
+\documentclass[a4paper, english, 10pt]{article}
+
+\usepackage{preamble}
+\usepackage{utils}
+\usepackage{data}
+
+\title{\Title}
+\author{\Authors}
+\date{\Date}
+
+\begin{document}
+
+	\import{./src/frontmatter}{mod}
+
+	\newpage
+
+	\import{./src/mainmatter}{mod}
+	%
+	% \newpage
+	%
+	% \import{./src/backmatter}{mod}
+
+\end{document}
