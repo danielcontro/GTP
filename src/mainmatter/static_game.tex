@@ -1,0 +1,12 @@
+\section{Static game of incomplete information}
+
+The first base case of the scheduling problem considered is the one where
+there are only two threads that are ready to be executed, there's no
+pre-emption and the system has only one computational unit (CPU). 
+In this case the set of players 
+
+\begin{game}{2}{2}
+  $T_1/T_2$ & Nop   & Run \\
+  Nop     & $f_1(s_{NN}), f_2(s_{NN})$  & $f_1(s_{NR}), f_2(s_{NR})$ \\
+  Run     & $f_1(s_{RN}), f_2(s_{RN})$ & $f_1(s_{RR}), f_2(s_{RR})$
+\end{game}
