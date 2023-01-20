@@ -1,13 +1,21 @@
 \section{Conclusions}
 
 In this paper, we modelled the resource allocation problem for singleprocessor
-systems by designing a model that avoids starvation, and multiprocessor
-systems as a congestion game. A cost function has been proposed, and a
-theoretical experiment was conducted. This work shows the theorical potential
-of the proposed system, and future works could explore the performance of
-having more complex utility functions that take in account other factors for
-evaluating the threads, such as energy consumption or different frequencies.
+systems by designing a model that maximizes the social optimum and avoids
+starvation, and a multiprocessor systems as a congestion game. A cost function 
+has been proposed, and a theoretical experiment was conducted. This work shows
+the theorical potential of the proposed system, and future works could explore
+the performance of having more complex utility functions that take in account
+other factors for evaluating the threads, such as energy consumption or
+different frequencies.
 
 Moreover it would be interesting to extend the single-core game to a
 parametric number of players $n$ and determine how it performs in those
 circumstances.
+
+For what concerns the job-scheduling game, we focused on the formalization, and
+we provided a simple solution for a infinitely repeated job-scheduling game.
+Admittedly we focused on a very simple version of the job-scheduling game,
+in our game each thread has the same duration and cost.
+For instance in \cite{9244046}, which proposes a very similar formalization as the
+one we used, the authors takes into account also energy consumption.
