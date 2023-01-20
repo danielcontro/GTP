@@ -61,7 +61,7 @@ Thus the game can generally be represented with the following bi-matrix:
 
 The general ordering considered between the payoffs is the following
 \[
-n_1 < n_2 <= 0 < c_1 < c_2 < e_1 < e_2
+n_1 < n_2 \leq 0 < c_1 < c_2 < e_1 < e_2
 \]
 in which executing $T_2$ yields a payoff greater than executing $T_1$ (the
 opposite would be analogous).
@@ -79,7 +79,7 @@ and $$\beta = \frac{e_2+n_1-c_1}{e_1+e_2-c_1}$$
 
 A special case of ordering between the payoffs considered is the following:
 \[
-n_1 = n_2 <= 0 < c_1 = c_2 < e_1 = e_2
+n_1 = n_2 \leq 0 < c_1 = c_2 < e_1 = e_2
 \]
 where executing either $T_1$ or $T_2$ yields the same payoff.
 
@@ -110,26 +110,3 @@ would be the only Nash Equilibrium in the game (in mixed strategies there
 would be two negatives probabilities corresponding to the pure strategy $(E,E)$).
 If on the other hand $c_i < e_j + n_i$ then what has previously been discussed
 holds still.
-
-% From which it can be built a parametrized potential function $\Omega$:
-
-% \begin{center}
-% \begin{game}{2}{2}
-%   $T_1 \backslash T_2$ & N & E \\
-%   N         & $0$ & $e_2-n_2$ \\
-%   E         & $e_1-n_1$ & $c_1-(e_1-n_1)$
-% \end{game}
-% \end{center}
-
-% since in general $n_1,n_2 <=0 < c_1, c_2 < e_1, e_2$ and $c - (e-n) < 0$,
-% because there's no pre-emption so scheduling concurrent execution rather than
-% executing only one thread is disadvantageous, it follows that $\Omega$ has the
-% following positivity:
-
-% \begin{center}
-% \begin{game}{2}{2}
-%   $T_1/T_2$ & N & E \\
-%   N         & $0$ & $>0$ \\
-%   E         & $>0$ & $<0$
-% \end{game}
-% \end{center}
