@@ -6,7 +6,7 @@ there is one main CPU capable of executing a general-purpose instruction
 set, including instructions from user processes.
 Multiprocessor systems, on the other hand, have two or more processors 
 in close communication, sharing the computer bus and sometimes the clock
- memory, and peripheral devices \cite{10.5555/2490781}.
+memory, and peripheral devices \cite{10.5555/2490781}.
 
 The multiprocessor systems can use asymmetric multiprocessing, 
 where processors have a master-slave relationship, 
@@ -47,10 +47,9 @@ focus on static games with complete information.
 One common application of game theory in resource allocation is the study of auctions, 
 in which multiple players bid for a limited resource. Auctions can be analysed using 
 game theoretical concepts such as equilibrium, efficiency, and fairness \cite{9244046}. 
-For our case, we used an auction game as a way to determine which job will be executed 
-next. An important step is to come up with an efficient bidding strategy, so that the 
-pull of jobs will not suffer from a condition called starvation, when some jobs in the 
-pull will never be executed because of the incorrect scheduling.
+An important step is to come up with an efficient strategy, so that the pull of jobs
+will not suffer from a condition called starvation, when some jobs in the pull will
+never be executed because of the incorrect scheduling.
 
 In game theory, there exists a job scheduling game, which is a game that models a 
 scenario when multiple selfish users wish to utilize multiple processing machines. 
