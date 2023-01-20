@@ -1,0 +1,26 @@
+\section{Dynamic game of complete information}
+
+In a real-world scenario where a scheduler has to queue threads for execution
+the game is repeatedly played for each time slot or a batch of time slots.
+In this case a simplification will be performed by considering as static base
+game of a repeated game the previously analyzed one with the following properties:
+
+\begin{itemize}
+    \item the threads will terminate after the same $d$ amount of time slots
+    which could be unknown (in this case it will be an infinitely repeated game).
+    \item each player wants to maximize its total payoff
+    \item each player knows the outcome of each previous game
+\end{itemize}
+
+It will be used a discount factor $\delta < 1$ in order to try to maximize
+the most the payoffs towards the start of the repeated game.
+
+In the case where there's no pre-emption the scheduler will alternate
+between the two Nash Equilibrium, since if there's no coordination
+the strategies $(N, N)$ and $(E, E)$ will have a lower total
+payoff, and if there's no change in the strategies there would be a problem
+of starvation since a thread would never be executed.
+Since there's coordination between the players a Tit-for-tat strategy could be
+beneficial, because it would determine the alternation of two Nash Equilibriums,
+a grim trigger strategy instead would lead to starvation since the thread with
+lower payoff when executed would never be scheduled for execution.
