@@ -1,7 +1,46 @@
-The problem of dividing several jobs among several machines in a way that optimizes some global objective function is well known and has been widely studied in computer science. 
+\section{Related work}
 
-Premi et al [EDIT REF 4, it is Premi, she was in refs before] modelled the resource allocation problem for heterogeneous platforms as a congestion game. The proposed cost function was dependent on the processor frequency, energy-per-operation of the processor, and average power consumption. Their goal was to find a Nash Equilibrium, which guarantees that no player can unilaterally improve its position. An experimental evaluation showed that the game worsens a little the performance, but it considerably reduces the power consumption, especially when the number of tasks is larger than the number of resources. 
+There is not much work that relates directly concurrency with game theory,
+and admittedly it is probably because they don't fit very well: in a concurrent
+setting there is an authority that tells every player exactly what to do,
+there are no rogue players and the scheduler seeks for the best possible global
+outcome. Most of the research is focused on the distributed setting, where
+there are independent agents that need to communicate in order to reach a 
+goal, which might or might not be a common goal.
+Nonetheless we think that using game theoretical concepts to shape a scheduler
+would be a useful exercise.
 
-Most of the related work focused on the distributed and cloud computing scenarios. For example, both Dong et al [EDIT REF 5] and Yang et al [EDIT REF 6] dealt with energy metrics, trying to find a strategy that minimizes the total energy consumption of the system. While [EDIT REF 5] used cooperative game to model the scenario, in [EDIT REF 6] a non-cooperative game was used to model a similar setting.
+The problem of dividing several jobs among several machines in a way 
+that optimizes some global objective function is well known and has 
+been widely studied in computer science. 
 
-Song et al [EDIT REF 7] used game theory to model MapReduce programming model, which is a distributed programming model designed by Google for processing large scale data sets in parallel. The task is somewhat aligned with our objective as well, since they need to select the most suitable job to be sent to the cluster given the competitive relationship among the jobs. They consider two games to model a two-level scheduling problem: auction game and task scheduling game. In an auction game, every job makes a bid and a job with the highest bid wins the game. For the second game, they use Hungarian Method to solve task assignment problem.
+Premi et al \cite{9244046} modelled the resource allocation 
+problem for heterogeneous platforms as a congestion game. 
+The proposed cost function was dependent on the processor frequency, 
+energy-per-operation of the processor, and average power consumption. 
+Their goal was to find a Nash Equilibrium, which guarantees that no player 
+can unilaterally improve its position. 
+An experimental evaluation showed that the game worsens a little the performance, 
+but it considerably reduces the power consumption, 
+especially when the number of tasks is larger than the number of resources. 
+
+Most of the related work focused on the distributed and cloud computing scenarios. 
+For example, both Dong et al \cite{10.1145/2639108.2639128} 
+and Yang et al \cite{7425237} dealt with energy metrics, 
+trying to find a strategy that minimizes the total energy consumption of the system. 
+While \cite{10.1145/2639108.2639128} used cooperative game to model the scenario, 
+in \cite{7425237} a non-cooperative game was used to model a similar setting.
+
+Song et al \cite{10.1007/978-1-4614-7010-6_33} used game theory to model MapReduce programming model, 
+which is a distributed programming model designed by Google for processing large 
+scale data sets in parallel. The task is somewhat aligned with our objective as well, 
+since they need to select the most suitable job to be sent to the cluster given the 
+competitive relationship among the jobs. They consider two games to model a two-level 
+scheduling problem: auction game and task scheduling game. In an auction game, 
+every job makes a bid and a job with the highest bid wins the game. 
+For the second game, they use Hungarian Method to solve task assignment problem.
+
+In order to build the job-scheduling game we followed the suggestions in paper \cite{rosenthal_class_1973}
+and paper \cite{10.1145/1807406.1807411}. The former first introduces and properly formalizes the class of congestion
+games, while the second formalizes repeated congestion games, and proposes strategies
+to reach a Pareto optimal equilibrium with such types of games.
