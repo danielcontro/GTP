@@ -1,0 +1,16 @@
+\section{Related work}
+
+There is not much work that relates directly concurrency with game theory,
+and admittedly it is probably because they don't fit very well: in a concurrent
+setting there is an authority that tells every player exactly what to do,
+there are no rogue players and the scheduler seeks for the best possible global
+outcome. Most of the research is focused on the distributed setting, where
+there are independent agents that need to communicate in order to reach a 
+goal, which might or might not be a common goal.
+Nonetheless we think that using game theoretical concepts to shape a scheduler
+would be a useful exercise. 
+
+In order to build the job-scheduling game we followed the suggestions in paper \cite{rosenthal_class_1973}
+and paper \cite{10.1145/1807406.1807411}. The former first introduces and properly formalizes the class of congestion
+games, while the second formalizes repeated congestion games, and proposes strategies
+to reach a Pareto optimal equilibrium with such types of games.
