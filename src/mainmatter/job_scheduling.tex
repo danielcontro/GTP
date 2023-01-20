@@ -8,7 +8,7 @@ load (the tasks) as evenly as possible throughout all of the cores. By
 cost, we mean time.
 
 The threads of execution are now running in parallel, and they can
-choose which core they want to use. If more than 1 thread chooses the
+choose which core they want to use. If more than one thread chooses the
 same core, the payoff for each task will be worse: in fact the core will
 take more time to complete each task. Obviously we want to reduce the
 likelihood of many threads competing for a single core.
