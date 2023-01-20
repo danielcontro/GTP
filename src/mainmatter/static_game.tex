@@ -1,12 +1,133 @@
-\section{Static game of incomplete information}
+\newpage
+\section{Static game of complete information}
 
-The first base case of the scheduling problem considered is the one where
-there are only two threads that are ready to be executed, there's no
-pre-emption and the system has only one computational unit (CPU). 
-In this case the set of players 
+The first scenario considered for the scheduling problem is the one with a
+single core system with no pre-emption. In this case the scheduling is
+performed only for the next time slot and there are two threads, each one of
+which is ready to be executed and terminated during it. The possible actions
+of each thread are to either be executed (E) or not executed (N); the
+outcome of a game depends on the combination of actions chosen by the players,
+which on the other hand try to maximize their own payoff, built in such a way
+that promotes coordination in order to reach a Pareto efficient solution.
 
+The game associated with the given scenario is defined as follows:
+
+\begin{itemize}
+
+  \item $\mathcal{P} = \{T_1, T_2\}$ denotes the set of players which contains
+    the two threads;
+
+  \item For $i \in |\mathcal{P}|,\ \mathcal{S}_i$ denotes the set of strategies
+    of player $i$, where each $s \in \mathcal{S}_i$ is a non-empty subset of
+    the set of actions $\mathcal{A} = \{ N, E \}$ (Execute or Not execute the
+    thread);
+
+  \item the payoff functions
+    $u_i(s_1, s_2): \mathcal{A} \times \mathcal{A} \to \mathbb{R}$
+    for $i \in |\mathcal{P}|$ are defined using the following parametes for which are
+    given different ordinal relations in order to study how the game behaves
+    in the different cases: 
+
+    \begin{itemize}
+      \item $u_1(N, N) = n_1$: $T_1$'s payoff if none of the thread is executed
+      \item $u_2(N, N) = n_2$: $T_2$'s payoff if none of the thread is executed
+
+      \item $u_1(E, N) = e_1$: $T_1$'s payoff if it's the only thread to be executed
+      \item $u_2(N, E) = e_2$: $T_2$'s payoff if it's the only thread to be executed
+
+      \item $u_1(N, E) = e_2 + n_1$: $T_1$'s payoff if only $T_2$ is executed
+      \item $u_2(E, N) = e_1 + n_2$: $T_2$'s payoff if only $T_1$ is executed
+
+      \item $u_1(E, E) = c_1$: $T_1$'s payoff if both of the threads are
+        scheduled for execution in the next time slot (situation that can't
+        practically happen since there's no pre-emption, which in reality
+        "collapses" into execute either $T_1$ or $T_2$ with a reduced payoff)
+      \item $u_2(E, E) = c_2$: $T_2$'s payoff if both of the threads are
+        scheduled for execution in the next time slot
+    \end{itemize}
+\end{itemize}
+
+Thus the game can generally be represented with the following bi-matrix:
+
+\begin{center}
 \begin{game}{2}{2}
-  $T_1/T_2$ & Nop   & Run \\
-  Nop     & $f_1(s_{NN}), f_2(s_{NN})$  & $f_1(s_{NR}), f_2(s_{NR})$ \\
-  Run     & $f_1(s_{RN}), f_2(s_{RN})$ & $f_1(s_{RR}), f_2(s_{RR})$
+  $T_1 \backslash T_2$ & N & E \\
+  N         & $n_1, n_2$ & $e_2+n_1, e_2$ \\
+  E         & $e_1, e_1+n_2$ & $c_1, c_2$
 \end{game}
+\end{center}
+
+The general ordering considered between the payoffs is the following
+\[
+n_1 < n_2 <= 0 < c_1 < c_2 < e_1 < e_2
+\]
+in which executing $T_2$ yields a payoff greater than executing $T_1$ (the
+opposite would be analogous).
+
+Since there's no pre-emption, $e_j - n_i > c_i$ (letting the other thread execute is
+better than scheduling both threads for execution since the result is the same
+with a reduced payoff in the latter case) there are two Pareto efficient
+strategies: $(N, E)$ and $(E,N)$ which are also the two Nash Equilibriums in
+pure strategies, while in mixed strategies if $\alpha$ is the probability of
+$T_1$ to play $N$ and $\beta$ the probability of $T_2$ to play $N$ then
+$(\alpha, \beta)$ is a NE with $$\alpha = \frac{e_1+n_2-c_2}{e_1+e_2-c_2}$$
+and $$\beta = \frac{e_2+n_1-c_1}{e_1+e_2-c_1}$$
+
+\subsection{Equality between payoffs of thread execution}
+
+A special case of ordering between the payoffs considered is the following:
+\[
+n_1 = n_2 <= 0 < c_1 = c_2 < e_1 = e_2
+\]
+where executing either $T_1$ or $T_2$ yields the same payoff.
+
+In this case the game can be simplified obtaining the following:
+
+\begin{center}
+\begin{game}{2}{2}
+  $T_1 \backslash T_2$ & N & E \\
+  N         & $n, n$ & $e+n, e$ \\
+  E         & $e, e+n$ & $c, c$
+\end{game}
+\end{center}
+
+Analyzing the game three Nash Equilibriums can be found: $(E, N)$
+and $(N, E)$ in pure strategies (as in the previous case), while in mixed
+strategies if $\alpha$ is the probability of $T_1$ to play $N$ and $\beta$
+the probability of $T_2$ to play $N$ then $(\alpha, \beta)$ is a NE with
+$$\alpha = \beta = \frac{e+n-c}{2e-c}$$
+
+\subsection{Adding pre-emption}
+
+In case that the CPU supports pre-emption it could be the case that
+$c_i > e_j + n_i$, which would mean that executing part of one thread, perform
+a context switch and execute part of the other yields a higher payoff than
+just executing one of the threads. If this were the case then also $(E, E)$
+would be a Pareto efficient solution with $(E, N)$ and $(N, E)$, moreover it
+would be the only Nash Equilibrium in the game (in mixed strategies there
+would be two negatives probabilities corresponding to the pure strategy $(E,E)$).
+If on the other hand $c_i < e_j + n_i$ then what has previously been discussed
+holds still.
+
+From which it can be built a parametrized potential function $\Omega$:
+
+\begin{center}
+\begin{game}{2}{2}
+  $T_1 \backslash T_2$ & N & E \\
+  N         & $0$ & $e_2-n_2$ \\
+  E         & $e_1-n_1$ & $c_1-(e_1-n_1)$
+\end{game}
+\end{center}
+
+since in general $n_1,n_2 <=0 < c_1, c_2 < e_1, e_2$ and $c - (e-n) < 0$,
+because there's no pre-emption so scheduling concurrent execution rather than
+executing only one thread is disadvantageous, it follows that $\Omega$ has the
+following positivity:
+
+\begin{center}
+\begin{game}{2}{2}
+  $T_1/T_2$ & N & E \\
+  N         & $0$ & $>0$ \\
+  E         & $>0$ & $<0$
+\end{game}
+\end{center}
